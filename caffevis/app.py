@@ -49,7 +49,7 @@ class CaffeVisApp(BaseApp):
             settings.caffevis_deploy_prototxt,
             settings.caffevis_network_weights,
             mean = None,                                 # Set to None for now, assign later         # self._data_mean,
-            channel_swap = self._net_channel_swap,
+            #channel_swap = self._net_channel_swap,
             raw_scale = self._range_scale,
         )
 

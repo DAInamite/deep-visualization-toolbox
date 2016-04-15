@@ -2,10 +2,11 @@ import numpy as np
 
 from image_misc import get_tiles_height_width, caffe_load_image
 
-
+import cv2
 
 def net_preproc_forward(net, img, data_hw):
-    appropriate_shape = data_hw + (3,)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY).reshape(img.shape[0], img.shape[1], 1)
+    appropriate_shape = data_hw + (1,)
     assert img.shape == appropriate_shape, 'img is wrong size (got %s but expected %s)' % (img.shape, appropriate_shape)
     #resized = caffe.io.resize_image(img, net.image_dims)   # e.g. (227, 227, 3)
     data_blob = net.transformer.preprocess('data', img)                # e.g. (3, 227, 227), mean subtracted and scaled to [0,255]
